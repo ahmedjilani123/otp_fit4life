@@ -24,7 +24,7 @@ app.post('/Email',async (req, res) => {
             return res.status(400).send("Email is required");
         }
 
-        console.log(process.env.KeyP);
+   
 
         const transporter = nodemailer.createTransport({
             service: "gmail",
@@ -36,9 +36,8 @@ app.post('/Email',async (req, res) => {
  ,
             },
         });
-       otp = Math.floor(100000 + Math.random() * 900000);
-       console.log(otp);
-       console.log(senderEmail);
+     var  otp = Math.floor(100000 + Math.random() * 900000);
+     
         const info = await transporter.sendMail({
           from: `"fit 4 life" <fit4life.dev@gmail.com>`,
           to: senderEmail,
@@ -169,7 +168,7 @@ i.fas.fa-envelope-open {
       });
       
      
-        res.status(200).json({otp:"Thank-you email successfully sent"});
+        res.status(200).json({"OTP":otp});
     } catch (error) {
         res.status(500).send("Failed to send thank-you email",error);
     }
